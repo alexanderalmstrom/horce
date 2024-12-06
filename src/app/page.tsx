@@ -10,7 +10,6 @@ export default function Home() {
         width={150}
         height={32}
       />
-      <p>Test tst</p>
     </div>
   );
 }
