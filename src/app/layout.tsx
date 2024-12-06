@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Horce",
-  description: "Horce. A one and only OMS for your business.",
+  description: "Horce. The one and only OMS for your business.",
 };
 
 export default function RootLayout({
