@@ -6,7 +6,7 @@ import Button from "./ui/Button";
 
 export default function Home() {
   return (
-    <div className="grid place-content-center place-items-center min-h-screen font-sans max-w-screen-sm mx-auto gap-6">
+    <div className="grid place-content-center place-items-center w-full min-h-screen font-sans mx-auto gap-6">
       <Image
         className="dark:invert"
         src="/horce.svg"
@@ -15,7 +15,7 @@ export default function Home() {
         height={32}
       />
       <p>The one and only OMS for your business.</p>
-      <form className="flex flex-col gap-4 w-full bg-neutral-500/10 p-8 rounded-md">
+      <form className="flex flex-col gap-4 w-full grow bg-neutral-500/10 p-8 rounded-md">
         <h2 className="font-medium text-md">Create new user</h2>
         <InputGroup>
           <Label htmlFor="username">Username</Label>
