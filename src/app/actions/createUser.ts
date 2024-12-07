@@ -51,6 +51,8 @@ export default async function createUser(
     .values(newUser)
     .returning()
     .catch((error) => {
+      console.error(error);
+
       if (error.code === "23505") {
         return {
           status: 400,
