@@ -23,7 +23,7 @@ const userSchema = z.object({
 
 export default async function createUser(
   prevState: FormState,
-  formData: FormData
+  formData: FormData,
 ) {
   const validation = userSchema.safeParse({
     email: formData.get("email"),

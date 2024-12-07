@@ -3,7 +3,7 @@ import CreateUserForm from "./components/CreateUserForm";
 
 export default function Home() {
   return (
-    <div className="grid place-content-center place-items-center w-full min-h-screen font-sans mx-auto gap-6">
+    <div className="mx-auto flex min-h-svh max-w-screen-sm flex-col place-content-center place-items-center gap-6 p-4 font-sans">
       <Image
         className="dark:invert"
         src="/horce.svg"

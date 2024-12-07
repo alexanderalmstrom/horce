@@ -7,5 +7,5 @@ export const db = drizzle(
     .string({
       message: "DATABASE_URL is required",
     })
-    .parse(process.env.DATABASE_URL)
+    .parse(process.env.DATABASE_URL),
 );

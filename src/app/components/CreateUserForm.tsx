@@ -6,26 +6,28 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 import InputGroup from "../ui/InputGroup";
 import Label from "../ui/Label";
+import { ComponentProps } from "react";
 
 const initialState = {
   status: 200,
   error: undefined,
 };
 
-export default function CreateUserForm() {
+export default function CreateUserForm(props: ComponentProps<"form">) {
   const [state, formAction] = useFormState(createUser, initialState);
 
   return (
     <form
       action={formAction}
-      className="flex flex-col gap-4 w-full grow bg-neutral-500/10 p-8 rounded-md"
+      className="flex w-full flex-col gap-4 rounded-md bg-neutral-500/10 p-8"
+      {...props}
     >
-      <h2 className="font-medium text-md">Create new user</h2>
+      <h2 className="text-md font-medium">Create new user</h2>
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
         {state.error?.email && (
-          <p className="text-red-500 text-sm">{state.error.email}</p>
+          <p className="text-sm text-red-500">{state.error.email}</p>
         )}
       </InputGroup>
       <InputGroup>
@@ -37,7 +39,7 @@ export default function CreateUserForm() {
           placeholder="Password"
         />
         {state.error?.password && (
-          <p className="text-red-500 text-sm">{state.error.password}</p>
+          <p className="text-sm text-red-500">{state.error.password}</p>
         )}
       </InputGroup>
       <Button type="submit">Register</Button>
