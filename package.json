@@ -16,7 +16,7 @@
     "db:studio": "drizzle-kit studio",
     "db:check": "drizzle-kit check",
     "db:up": "drizzle-kit up",
-    "postbuild": "db:generate && db:push"
+    "postbuild": "pnpm db:generate && pnpm db:push"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
