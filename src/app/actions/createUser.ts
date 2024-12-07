@@ -21,10 +21,10 @@ export default async function createUser(formData: FormData) {
     throw new Error("Failed to validate user form data");
   }
 
-  const newUser: NewUser = {
+  const newUser = {
     email: validation.data.email,
     password: validation.data.password,
-  };
+  } satisfies NewUser;
 
   try {
     await db.insert(usersTable).values(newUser);
