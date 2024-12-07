@@ -9,10 +9,13 @@ type NewUser = typeof usersTable.$inferInsert;
 
 type FormState = {
   status: number;
-  error?: FieldErrors;
+  error?: CreateUserFieldErrors | string;
+  message?: string;
 };
 
-type FieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
+export type CreateUserFieldErrors = z.inferFlattenedErrors<
+  typeof userSchema
+>["fieldErrors"];
 
 const userSchema = z.object({
   email: z.string().email("Email must be a valid email address"),
@@ -43,17 +46,30 @@ export default async function createUser(
     password: hashPassword(validation.data.password),
   } satisfies NewUser;
 
-  try {
-    await db.insert(usersTable).values(newUser);
+  const createdUser = await db
+    .insert(usersTable)
+    .values(newUser)
+    .returning()
+    .catch((error) => {
+      if (error.code === "23505") {
+        return {
+          status: 400,
+          error: "A user with that email already exists",
+        };
+      }
 
-    return {
-      status: 200,
-      error: undefined,
-    };
-  } catch {
-    return {
-      status: 500,
-      error: "An error occurred while creating the user",
-    };
+      return {
+        status: 500,
+        error: "An error occurred while creating the user",
+      };
+    });
+
+  if (createdUser && "error" in createdUser) {
+    return createdUser;
   }
+
+  return {
+    status: 200,
+    message: "User created successfully",
+  };
 }

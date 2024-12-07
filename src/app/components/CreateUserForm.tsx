@@ -12,6 +12,7 @@ import { cn } from "~/lib/utils/cn";
 const initialState = {
   status: 200,
   error: undefined,
+  message: "",
 };
 
 export default function CreateUserForm({
@@ -24,7 +25,7 @@ export default function CreateUserForm({
     <form
       action={formAction}
       className={cn(
-        "flex w-full flex-col gap-4 rounded-md bg-neutral-500/10 p-8",
+        "flex w-full flex-col gap-4 rounded-md bg-neutral-500/5 p-8",
         className,
       )}
       {...props}
@@ -33,7 +34,7 @@ export default function CreateUserForm({
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
-        {state.error?.email && (
+        {typeof state.error !== "string" && state.error?.email && (
           <p className="text-sm text-red-500">{state.error.email}</p>
         )}
       </InputGroup>
@@ -45,11 +46,17 @@ export default function CreateUserForm({
           type="password"
           placeholder="Password"
         />
-        {state.error?.password && (
+        {typeof state.error !== "string" && state.error?.password && (
           <p className="text-sm text-red-500">{state.error.password}</p>
         )}
       </InputGroup>
       <Button type="submit">Register</Button>
+      {state.error && typeof state.error === "string" && (
+        <p className="text-sm text-red-500">{state.error}</p>
+      )}
+      {state && "message" in state && (
+        <p className="text-sm">{state.message}</p>
+      )}
     </form>
   );
 }
