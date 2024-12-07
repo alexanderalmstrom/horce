@@ -1,8 +1,8 @@
 "use server";
 
 import { z } from "zod";
-import { db } from "~/db";
-import { usersTable } from "~/db/schema";
+import { db } from "~/lib/db";
+import { usersTable } from "~/lib/db/schema";
 
 type NewUser = typeof usersTable.$inferInsert;
 

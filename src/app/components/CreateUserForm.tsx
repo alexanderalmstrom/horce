@@ -7,19 +7,26 @@ import Input from "../ui/Input";
 import InputGroup from "../ui/InputGroup";
 import Label from "../ui/Label";
 import { ComponentProps } from "react";
+import { cn } from "~/lib/utils/cn";
 
 const initialState = {
   status: 200,
   error: undefined,
 };
 
-export default function CreateUserForm(props: ComponentProps<"form">) {
+export default function CreateUserForm({
+  className,
+  ...props
+}: ComponentProps<"form">) {
   const [state, formAction] = useFormState(createUser, initialState);
 
   return (
     <form
       action={formAction}
-      className="flex w-full flex-col gap-4 rounded-md bg-neutral-500/10 p-8"
+      className={cn(
+        "flex w-full flex-col gap-4 rounded-md bg-neutral-500/10 p-8",
+        className,
+      )}
       {...props}
     >
       <h2 className="text-md font-medium">Create new user</h2>
