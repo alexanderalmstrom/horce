@@ -15,8 +15,6 @@ const initialState = {
 export default function CreateUserForm() {
   const [state, formAction] = useFormState(createUser, initialState);
 
-  console.log("state", state);
-
   return (
     <form
       action={formAction}
