@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { db } from "~/lib/db";
 import { usersTable } from "~/lib/db/schema";
+import hashPassword from "~/lib/utils/hashPassword";
 
 type NewUser = typeof usersTable.$inferInsert;
 
@@ -39,7 +40,7 @@ export default async function createUser(
 
   const newUser = {
     email: validation.data.email,
-    password: validation.data.password,
+    password: hashPassword(validation.data.password),
   } satisfies NewUser;
 
   try {
@@ -52,7 +53,7 @@ export default async function createUser(
   } catch {
     return {
       status: 500,
-      error: undefined,
+      error: "An error occurred while creating the user",
     };
   }
 }
