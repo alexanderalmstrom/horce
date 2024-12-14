@@ -8,9 +8,8 @@ import hashPassword from "~/lib/utils/hashPassword";
 type NewUser = typeof usersTable.$inferInsert;
 
 type FormState = {
-  status: number;
-  error?: CreateUserFieldErrors | string;
   message?: string;
+  error?: CreateUserFieldErrors | string;
 };
 
 export type CreateUserFieldErrors = z.inferFlattenedErrors<
@@ -18,11 +17,11 @@ export type CreateUserFieldErrors = z.inferFlattenedErrors<
 >["fieldErrors"];
 
 const userSchema = z.object({
-  email: z.string().email("Email must be a valid email address"),
+  email: z.string().email("USER_EMAIL_INVALID"),
   password: z
     .string()
-    .min(8, "Password must be at least 8 characters long")
-    .max(255, "Password cannot be longer than 255 characters"),
+    .min(8, "USER_PASSWORD_TOO_SHORT")
+    .max(255, "USER_PASSWORD_TOO_LONG"),
 });
 
 export default async function createUser(
@@ -36,7 +35,6 @@ export default async function createUser(
 
   if (!validation.success) {
     return {
-      status: 400,
       error: validation.error.flatten().fieldErrors,
     };
   }
@@ -55,14 +53,12 @@ export default async function createUser(
 
       if (error.code === "23505") {
         return {
-          status: 400,
-          error: "A user with that email already exists",
+          error: "USER_ALREADY_EXISTS",
         };
       }
 
       return {
-        status: 500,
-        error: "An error occurred while creating the user",
+        error: "USER_CREATION_FAILED",
       };
     });
 
@@ -71,7 +67,6 @@ export default async function createUser(
   }
 
   return {
-    status: 200,
-    message: "User created successfully",
+    message: "USER_CREATED",
   };
 }
