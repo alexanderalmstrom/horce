@@ -1,13 +1,12 @@
 "use server";
 
 import { z } from "zod";
-import { delay } from "~/lib/utils/delay";
 import { usersTable } from "~/lib/db/schema";
 import checkPassword from "~/lib/utils/checkPassword";
 import { db } from "~/lib/db";
 import { eq } from "drizzle-orm";
 
-type User = typeof usersTable.$inferSelect;
+type UserSelect = typeof usersTable.$inferSelect;
 
 type UserFieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
 
@@ -25,8 +24,6 @@ export default async function loginUser(
   prevState: FormState,
   formData: FormData,
 ) {
-  await delay(200);
-
   const validation = userSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -41,7 +38,7 @@ export default async function loginUser(
   const user = {
     email: validation.data.email,
     password: validation.data.password,
-  } satisfies Partial<User>;
+  } satisfies Partial<UserSelect>;
 
   const foundUsers = await db
     .select()

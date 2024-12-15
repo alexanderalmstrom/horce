@@ -3,10 +3,9 @@
 import { z } from "zod";
 import { db } from "~/lib/db";
 import { usersTable } from "~/lib/db/schema";
-import { delay } from "~/lib/utils/delay";
 import hashPassword from "~/lib/utils/hashPassword";
 
-type NewUser = typeof usersTable.$inferInsert;
+type UserInsert = typeof usersTable.$inferInsert;
 
 type UserFieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
 
@@ -28,8 +27,6 @@ export default async function createUser(
   prevState: FormState,
   formData: FormData,
 ) {
-  await delay(200);
-
   const validation = userSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -44,7 +41,7 @@ export default async function createUser(
   const newUser = {
     email: validation.data.email,
     password: hashPassword(validation.data.password),
-  } satisfies NewUser;
+  } satisfies UserInsert;
 
   const createdUser = await db
     .insert(usersTable)
