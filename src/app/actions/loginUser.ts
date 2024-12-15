@@ -1,10 +1,10 @@
 "use server";
 
 import { z } from "zod";
-import { usersTable } from "~/lib/db/schema";
-import checkPassword from "~/lib/utils/checkPassword";
-import { db } from "~/lib/db";
 import { eq } from "drizzle-orm";
+import { usersTable } from "~/lib/db/schema";
+import { db } from "~/lib/db";
+import verifyPassword from "~/lib/utils/verifyPassword";
 
 type UserSelect = typeof usersTable.$inferSelect;
 
@@ -47,7 +47,7 @@ export default async function loginUser(
 
   if (
     !foundUsers.length ||
-    !checkPassword(user.password, foundUsers[0].password)
+    !verifyPassword(user.password, foundUsers[0].password)
   ) {
     return {
       error: "USER_INCORRECT_CREDENTIALS",
