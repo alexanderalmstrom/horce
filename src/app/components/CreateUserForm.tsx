@@ -5,15 +5,13 @@ import { ComponentProps, useActionState } from "react";
 import Form from "../ui/Form";
 import CreateUserFormFields from "./CreateUserFormFields";
 
-const initialState = {
-  message: "",
-};
-
 export default function CreateUserForm({ ...props }: ComponentProps<"form">) {
-  const [state, formAction] = useActionState(createUser, initialState);
+  const [state, action] = useActionState(createUser, {
+    message: "",
+  });
 
   return (
-    <Form action={formAction} {...props}>
+    <Form action={action} {...props}>
       <CreateUserFormFields state={state} />
     </Form>
   );
