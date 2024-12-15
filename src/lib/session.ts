@@ -1,19 +1,28 @@
-import { SignJWT } from "jose";
+import "server-only";
+import { jwtVerify, SignJWT } from "jose";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { z } from "zod";
 
-const secret = new TextEncoder().encode(process.env.SECRET);
+const secret = new TextEncoder().encode(
+  z
+    .string({
+      message: "Secret is required",
+    })
+    .parse(process.env.SECRET),
+);
 
 const cookie = {
   name: "session",
   options: {
     httpOnly: true,
     secure: true,
-    sameSite: "lax",
     path: "/",
   },
   duration: 24 * 60 * 60 * 1000, // 1 day
 };
 
-export default async function encrypt(payload: any) {
+export async function encrypt(payload: any) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -21,8 +30,51 @@ export default async function encrypt(payload: any) {
     .sign(secret);
 }
 
-export async function createSession() {}
+export async function decrypt(session: string) {
+  try {
+    const { payload } = await jwtVerify(session, secret, {
+      algorithms: ["HS256"],
+    });
+    return payload;
+  } catch (error) {
+    return null;
+  }
+}
 
-export async function verifySession() {}
+export async function createSession(userId: string) {
+  const expires = new Date(Date.now() + cookie.duration);
+  const session = await encrypt({ userId, expires });
 
-export async function deleteSession() {}
+  cookies().set({
+    ...cookie.options,
+    name: cookie.name,
+    value: session,
+    sameSite: "lax",
+    expires,
+  });
+
+  redirect("/dashboard");
+}
+
+export async function verifySession() {
+  const sessionCookie = cookies().get(cookie.name)?.value;
+
+  if (!sessionCookie) {
+    redirect("/login");
+  }
+
+  const session = await decrypt(sessionCookie);
+
+  if (!session?.userId) {
+    redirect("/login");
+  }
+
+  return {
+    userId: session.userId,
+  };
+}
+
+export async function deleteSession() {
+  cookies().delete(cookie.name);
+  redirect("/login");
+}
