@@ -17,12 +17,14 @@ export default function LoginUserFormFields({
 
   return (
     <>
-      <h2 className="text-md font-medium">Log in</h2>
+      <h2 className="text-lg font-medium">Log in with existing user</h2>
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
         {typeof state.error !== "string" && state.error?.email && (
-          <p className="text-sm text-red-500">{state.error.email}</p>
+          <p className="flex flex-col text-sm text-red-500">
+            {state.error.email[0]}
+          </p>
         )}
       </InputGroup>
       <InputGroup>
@@ -34,7 +36,9 @@ export default function LoginUserFormFields({
           placeholder="Password"
         />
         {typeof state.error !== "string" && state.error?.password && (
-          <p className="text-sm text-red-500">{state.error.password}</p>
+          <p className="flex flex-col text-sm text-red-500">
+            {state.error.password[0]}
+          </p>
         )}
       </InputGroup>
       <Button type="submit" disabled={pending}>

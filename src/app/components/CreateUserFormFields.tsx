@@ -17,12 +17,14 @@ export default function CreateUserFormFields({
 
   return (
     <>
-      <h2 className="text-md font-medium">Register new user</h2>
+      <h2 className="text-lg font-medium">Create new user</h2>
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
         {typeof state.error !== "string" && state.error?.email && (
-          <p className="text-sm text-red-500">{state.error.email}</p>
+          <p className="flex flex-col text-sm text-red-500">
+            {state.error.email[0]}
+          </p>
         )}
       </InputGroup>
       <InputGroup>
@@ -34,7 +36,9 @@ export default function CreateUserFormFields({
           placeholder="Password"
         />
         {typeof state.error !== "string" && state.error?.password && (
-          <p className="text-sm text-red-500">{state.error.password}</p>
+          <p className="flex flex-col text-sm text-red-500">
+            {state.error.password[0]}
+          </p>
         )}
       </InputGroup>
       <Button type="submit" disabled={pending}>

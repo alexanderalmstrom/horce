@@ -19,6 +19,7 @@ const userSchema = z.object({
   email: z.string().email("USER_EMAIL_INVALID"),
   password: z
     .string()
+    .min(1, "USER_PASSWORD_REQUIRED")
     .min(8, "USER_PASSWORD_TOO_SHORT")
     .max(255, "USER_PASSWORD_TOO_LONG"),
 });
