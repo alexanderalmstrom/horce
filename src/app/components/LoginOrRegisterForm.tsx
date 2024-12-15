@@ -13,10 +13,10 @@ export default function LoginOrRegisterForm() {
 
   return (
     <>
-      <div className="flex gap-4">
+      <div className="flex">
         <Button
           className={cn(
-            "border border-foreground/50 bg-transparent px-8 py-4 text-foreground/50 hover:border-foreground hover:text-foreground",
+            "grow rounded-br-none rounded-tr-none border border-foreground/50 bg-transparent px-8 py-4 text-foreground/50 hover:border-foreground hover:text-foreground",
             currentTab === "login" && "border-foreground text-foreground",
           )}
           onClick={() => setCurrentTab("login")}
@@ -25,7 +25,7 @@ export default function LoginOrRegisterForm() {
         </Button>
         <Button
           className={cn(
-            "border border-foreground/50 bg-transparent px-8 py-4 text-foreground/50 hover:border-foreground hover:text-foreground",
+            "grow rounded-bl-none rounded-tl-none border border-foreground/50 bg-transparent px-8 py-4 text-foreground/50 hover:border-foreground hover:text-foreground",
             currentTab === "register" && "border-foreground text-foreground",
           )}
           onClick={() => setCurrentTab("register")}
