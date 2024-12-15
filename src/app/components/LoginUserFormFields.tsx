@@ -17,7 +17,9 @@ export default function LoginUserFormFields({
 
   return (
     <>
-      <h2 className="text-lg font-medium">Log in with existing user</h2>
+      <h2 className="text-center text-lg font-medium">
+        Log in with existing user
+      </h2>
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
@@ -41,7 +43,7 @@ export default function LoginUserFormFields({
           </p>
         )}
       </InputGroup>
-      <Button type="submit" disabled={pending}>
+      <Button className="mt-2" type="submit" disabled={pending}>
         {pending ? <Loader2 size={24} className="animate-spin" /> : "Log in"}
       </Button>
       {state && typeof state.error === "string" && (
