@@ -16,7 +16,7 @@ type FormState = {
 };
 
 const userSchema = z.object({
-  email: z.string().email("USER_EMAIL_INVALID"),
+  email: z.string().min(1, "USER_EMAIL_REQUIRED").email("USER_EMAIL_INVALID"),
   password: z
     .string()
     .min(1, "USER_PASSWORD_REQUIRED")
