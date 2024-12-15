@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 import InputGroup from "../ui/InputGroup";
 import Label from "../ui/Label";
-import createUser from "../actions/createUser";
+import createUser from "../_actions/createUser";
 
 type CreateUserState = Awaited<ReturnType<typeof createUser>>;
 

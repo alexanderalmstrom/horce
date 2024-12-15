@@ -2,7 +2,7 @@
 
 import { ComponentProps } from "react";
 import { useFormState } from "react-dom";
-import createUser from "../actions/createUser";
+import createUser from "../_actions/createUser";
 import Form from "../ui/Form";
 import CreateUserFormFields from "./CreateUserFormFields";
 import Link from "next/link";

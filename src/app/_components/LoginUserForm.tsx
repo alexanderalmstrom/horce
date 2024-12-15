@@ -2,7 +2,7 @@
 
 import { ComponentProps } from "react";
 import { useFormState } from "react-dom";
-import loginUser from "../actions/loginUser";
+import loginUser from "../_actions/loginUser";
 import Form from "../ui/Form";
 import LoginUserFormFields from "./LoginUserFormFields";
 import Link from "next/link";

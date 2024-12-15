@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SiteLogo from "../components/SiteLogo";
+import SiteLogo from "../_components/SiteLogo";
 
 export default function Layout({
   children,

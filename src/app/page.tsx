@@ -1,6 +1,6 @@
 import Link from "next/link";
-import LoginUserForm from "./components/LoginUserForm";
-import SiteLogo from "./components/SiteLogo";
+import LoginUserForm from "./_components/LoginUserForm";
+import SiteLogo from "./_components/SiteLogo";
 
 export default function Home() {
   return (
