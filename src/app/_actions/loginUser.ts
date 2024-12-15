@@ -55,7 +55,10 @@ export default async function loginUser(
     };
   }
 
-  await createSession(String(foundUsers[0].id));
+  await createSession({
+    userId: String(foundUsers[0].id),
+    role: foundUsers[0].role,
+  });
 
   return {
     message: "USER_LOGGED_IN",

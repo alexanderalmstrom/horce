@@ -11,16 +11,24 @@ export async function getUser() {
     .select({
       id: usersTable.id,
       email: usersTable.email,
+      role: usersTable.role,
     })
     .from(usersTable)
     .where(eq(usersTable.id, Number(session.userId)));
 
-  return userDTO(users[0]);
+  const user = users[0];
+
+  if (!user) {
+    throw new Error("USER_NOT_FOUND");
+  }
+
+  return userDTO(user);
 }
 
-function userDTO(user: { id: number; email: string }) {
+function userDTO(user: { id: number; email: string; role: string }) {
   return {
     id: user.id,
     email: user.email,
+    role: user.role,
   };
 }
