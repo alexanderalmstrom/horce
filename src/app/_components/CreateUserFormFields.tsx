@@ -20,7 +20,7 @@ export default function CreateUserFormFields({
       <h2 className="text-center text-lg font-medium">Register new user</h2>
       <InputGroup>
         <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="text" placeholder="Email" />
+        <Input id="email" name="email" type="email" placeholder="E-mail" />
         {state?.error &&
           typeof state.error !== "string" &&
           state.error.email && (

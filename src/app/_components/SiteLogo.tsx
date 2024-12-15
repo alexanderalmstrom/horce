@@ -3,11 +3,12 @@ import Image from "next/image";
 export default function SiteLogo() {
   return (
     <Image
-      className="dark:invert"
+      className="h-8 w-40 object-contain dark:invert"
       src="/horce.svg"
       alt="Horce"
-      width={150}
-      height={32}
+      width={300}
+      height={64}
+      loading="eager"
     />
   );
 }
