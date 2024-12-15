@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { db } from "~/lib/db";
 import { usersTable } from "~/lib/db/schema";
+import { delay } from "~/lib/utils/delay";
 import hashPassword from "~/lib/utils/hashPassword";
 
 type NewUser = typeof usersTable.$inferInsert;
@@ -28,6 +29,8 @@ export default async function createUser(
   prevState: FormState,
   formData: FormData,
 ) {
+  await delay(200);
+
   const validation = userSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
