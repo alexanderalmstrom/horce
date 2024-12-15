@@ -11,7 +11,9 @@ export default {
     extend: {
       colors: {
         background: "rgb(var(--background) / <alpha-value>)",
+        "background-accent": "rgb(var(--background-accent) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
+        "foreground-accent": "rgb(var(--foreground-accent) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
