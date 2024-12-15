@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { usersTable } from "~/lib/db/schema";
 import { db } from "~/lib/db";
 import verifyPassword from "~/lib/utils/verifyPassword";
+import { createSession } from "~/lib/session";
 
 type UserSelect = typeof usersTable.$inferSelect;
 
@@ -53,6 +54,8 @@ export default async function loginUser(
       error: "USER_INCORRECT_CREDENTIALS",
     };
   }
+
+  await createSession(String(foundUsers[0].id));
 
   return {
     message: "USER_LOGGED_IN",
