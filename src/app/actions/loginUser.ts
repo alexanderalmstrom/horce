@@ -48,15 +48,12 @@ export default async function loginUser(
     .from(usersTable)
     .where(eq(usersTable.email, user.email));
 
-  if (!foundUsers.length) {
+  if (
+    !foundUsers.length ||
+    !checkPassword(user.password, foundUsers[0].password)
+  ) {
     return {
-      error: "USER_NOT_FOUND",
-    };
-  }
-
-  if (!checkPassword(user.password, foundUsers[0].password)) {
-    return {
-      error: "USER_PASSWORD_INCORRECT",
+      error: "USER_INCORRECT_CREDENTIALS",
     };
   }
 
