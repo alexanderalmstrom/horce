@@ -4,6 +4,7 @@ import InputGroup from "../ui/InputGroup";
 import Label from "../ui/Label";
 import createUser from "../actions/createUser";
 import { useFormStatus } from "react-dom";
+import { Loader2 } from "lucide-react";
 
 type CreateUserState = Awaited<ReturnType<typeof createUser>>;
 
@@ -37,24 +38,7 @@ export default function CreateUserFormFields({
         )}
       </InputGroup>
       <Button type="submit" disabled={pending}>
-        {pending ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6 animate-spin"
-          >
-            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-          </svg>
-        ) : (
-          "Register"
-        )}
+        {pending ? <Loader2 size={24} className="animate-spin" /> : "Register"}
       </Button>
       {state.error && typeof state.error === "string" && (
         <p className="text-sm text-red-500">{state.error}</p>
