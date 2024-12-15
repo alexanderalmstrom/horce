@@ -9,7 +9,6 @@ export default function Home() {
     <div className="mx-auto flex min-h-svh flex-col place-content-center place-items-center gap-8 p-4 py-12 font-sans lg:py-24">
       <header className="flex flex-col items-center gap-4">
         <SiteLogo />
-        <p className="font-medium">The one and only OMS for your business.</p>
       </header>
       <LoginOrRegisterForm />
     </div>

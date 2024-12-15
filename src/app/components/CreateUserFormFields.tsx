@@ -17,7 +17,7 @@ export default function CreateUserFormFields({
 
   return (
     <>
-      <h2 className="text-center text-lg font-medium">Create new user</h2>
+      <h2 className="text-center text-lg font-medium">Register new user</h2>
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
