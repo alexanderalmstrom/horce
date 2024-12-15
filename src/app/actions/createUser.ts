@@ -8,14 +8,12 @@ import hashPassword from "~/lib/utils/hashPassword";
 
 type NewUser = typeof usersTable.$inferInsert;
 
+type UserFieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
+
 type FormState = {
   message?: string;
-  error?: CreateUserFieldErrors | string;
+  error?: UserFieldErrors | string;
 };
-
-export type CreateUserFieldErrors = z.inferFlattenedErrors<
-  typeof userSchema
->["fieldErrors"];
 
 const userSchema = z.object({
   email: z.string().email("USER_EMAIL_INVALID"),

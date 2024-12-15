@@ -1,4 +1,5 @@
 import CreateUserForm from "./components/CreateUserForm";
+import LoginUserForm from "./components/LoginUserForm";
 import SiteLogo from "./components/SiteLogo";
 
 export const revalidate = 86400;
@@ -9,6 +10,7 @@ export default function Home() {
     <div className="mx-auto flex min-h-svh max-w-lg flex-col place-content-center place-items-center gap-6 p-4 font-sans">
       <SiteLogo />
       <p className="font-medium">The one and only OMS for your business.</p>
+      <LoginUserForm />
       <CreateUserForm />
     </div>
   );
