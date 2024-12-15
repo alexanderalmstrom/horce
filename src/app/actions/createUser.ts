@@ -24,7 +24,7 @@ const userSchema = z.object({
 });
 
 export default async function createUser(
-  prevState: FormState,
+  state: FormState | undefined,
   formData: FormData,
 ) {
   const validation = userSchema.safeParse({

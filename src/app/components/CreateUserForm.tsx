@@ -8,9 +8,7 @@ import CreateUserFormFields from "./CreateUserFormFields";
 import Link from "next/link";
 
 export default function CreateUserForm({ ...props }: ComponentProps<"form">) {
-  const [state, action] = useFormState(createUser, {
-    message: "",
-  });
+  const [state, action] = useFormState(createUser, undefined);
 
   return (
     <Form action={action} {...props}>

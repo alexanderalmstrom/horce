@@ -8,9 +8,7 @@ import LoginUserFormFields from "./LoginUserFormFields";
 import Link from "next/link";
 
 export default function LoginUserForm({ ...props }: ComponentProps<"form">) {
-  const [state, action] = useFormState(loginUser, {
-    message: "",
-  });
+  const [state, action] = useFormState(loginUser, undefined);
 
   return (
     <Form action={action} {...props}>

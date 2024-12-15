@@ -11,7 +11,7 @@ type CreateUserState = Awaited<ReturnType<typeof loginUser>>;
 export default function LoginUserFormFields({
   state,
 }: {
-  state: CreateUserState;
+  state: CreateUserState | undefined;
 }) {
   const { pending } = useFormStatus();
 
@@ -23,11 +23,13 @@ export default function LoginUserFormFields({
       <InputGroup>
         <Label htmlFor="email">Email</Label>
         <Input id="email" name="email" type="text" placeholder="Email" />
-        {typeof state.error !== "string" && state.error?.email && (
-          <p className="flex flex-col text-sm text-red-500">
-            {state.error.email[0]}
-          </p>
-        )}
+        {state?.error &&
+          typeof state.error !== "string" &&
+          state.error.email && (
+            <p className="flex flex-col text-sm text-red-500">
+              {state.error.email[0]}
+            </p>
+          )}
       </InputGroup>
       <InputGroup>
         <Label htmlFor="password">Password</Label>
@@ -37,11 +39,13 @@ export default function LoginUserFormFields({
           type="password"
           placeholder="Password"
         />
-        {typeof state.error !== "string" && state.error?.password && (
-          <p className="flex flex-col text-sm text-red-500">
-            {state.error.password[0]}
-          </p>
-        )}
+        {state?.error &&
+          typeof state.error !== "string" &&
+          state.error.password && (
+            <p className="flex flex-col text-sm text-red-500">
+              {state.error.password[0]}
+            </p>
+          )}
       </InputGroup>
       <Button className="mt-2" type="submit" disabled={pending}>
         {pending ? <Loader2 size={24} className="animate-spin" /> : "Log in"}
