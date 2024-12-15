@@ -1,8 +1,9 @@
 import Link from "next/link";
-import LoginUserForm from "./components/LoginUserForm";
-import SiteLogo from "./components/SiteLogo";
+import SiteLogo from "../components/SiteLogo";
 
-export default function Home() {
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <main className="mx-auto flex min-h-svh flex-col place-content-center place-items-center gap-8 p-4 py-12 font-sans lg:py-24">
       <header className="flex flex-col items-center gap-4">
@@ -10,7 +11,7 @@ export default function Home() {
           <SiteLogo />
         </Link>
       </header>
-      <LoginUserForm className="max-w-lg" />
+      {children}
     </main>
   );
 }
