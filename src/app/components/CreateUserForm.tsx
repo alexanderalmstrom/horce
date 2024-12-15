@@ -1,12 +1,13 @@
 "use client";
 
 import createUser from "../actions/createUser";
-import { ComponentProps, useActionState } from "react";
+import { ComponentProps } from "react";
 import Form from "../ui/Form";
 import CreateUserFormFields from "./CreateUserFormFields";
+import { useFormState } from "react-dom";
 
 export default function CreateUserForm({ ...props }: ComponentProps<"form">) {
-  const [state, action] = useActionState(createUser, {
+  const [state, action] = useFormState(createUser, {
     message: "",
   });
 
