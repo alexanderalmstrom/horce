@@ -21,7 +21,7 @@ export default function LoginUserFormFields({
         Log in with existing user
       </h2>
       <InputGroup>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">E-mail</Label>
         <Input id="email" name="email" type="email" placeholder="E-mail" />
         {state?.error &&
           typeof state.error !== "string" &&
