@@ -3,18 +3,29 @@ import "server-only";
 import { eq } from "drizzle-orm";
 import { cache } from "react";
 import { db } from "~/lib/db";
-import { usersTable } from "~/lib/db/schema";
+import { usersTable } from "~/lib/db/schema/users";
 import { verifySession } from "~/lib/session";
 
 export const getUsers = cache(async () => {
-  const users = await db
-    .select({
-      id: usersTable.id,
-      role: usersTable.role,
-      email: usersTable.email,
-      fullName: usersTable.fullName,
-    })
-    .from(usersTable);
+  // const users = await db
+  //   .select({
+  //     id: usersTable.id,
+  //     role: usersTable.role,
+  //     email: usersTable.email,
+  //     fullName: usersTable.fullName,
+  //   })
+  //   .from(usersTable)
+  //   .orderBy(asc(usersTable.id));
+
+  const users = await db.query.users.findMany({
+    columns: {
+      id: true,
+      role: true,
+      email: true,
+      fullName: true,
+    },
+    orderBy: (users, { asc }) => [asc(users.id)],
+  });
 
   return users.map(userDTO);
 });

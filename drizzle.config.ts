@@ -1,16 +1,12 @@
 import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
-import { z } from "zod";
+import { DATABASE_URL } from "~/lib/config/env";
 
 export default defineConfig({
   out: "./drizzle",
-  schema: "./src/lib/db/schema.ts",
+  schema: "./src/lib/db/schema",
   dialect: "postgresql",
   dbCredentials: {
-    url: z
-      .string({
-        message: "DATABASE_URL is required",
-      })
-      .parse(process.env.DATABASE_URL),
+    url: DATABASE_URL,
   },
 });
