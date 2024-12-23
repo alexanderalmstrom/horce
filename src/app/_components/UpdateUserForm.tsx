@@ -1,14 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import { getUser } from "../_data/user";
+import type { UserDTO } from "../_data/user";
 import updateUser from "~/app/_actions/updateUser";
 import Button from "~/app/_ui/Button";
 import Input from "~/app/_ui/Input";
 import InputGroup from "~/app/_ui/InputGroup";
 import Label from "~/app/_ui/Label";
-
-type UserDTO = Awaited<ReturnType<typeof getUser>>;
 
 export default function UpdateUserForm({ user }: { user: UserDTO }) {
   const [state, action] = useActionState(updateUser, undefined);

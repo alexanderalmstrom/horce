@@ -41,3 +41,5 @@ function userDTO(user: {
     fullName: user.fullName ?? undefined,
   };
 }
+
+export type UserDTO = ReturnType<typeof userDTO>;
