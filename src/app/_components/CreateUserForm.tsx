@@ -2,10 +2,10 @@
 
 import type { ComponentProps } from "react";
 import { useActionState } from "react";
-import Link from "next/link";
 import createUser from "../_actions/createUser";
 import Form from "../_ui/Form";
 import CreateUserFormFields from "./CreateUserFormFields";
+import LinkAsButton from "../_ui/LinkAsButton";
 
 export default function CreateUserForm(props: ComponentProps<"form">) {
   const [state, action] = useActionState(createUser, undefined);
@@ -13,11 +13,7 @@ export default function CreateUserForm(props: ComponentProps<"form">) {
   return (
     <Form action={action} {...props}>
       <CreateUserFormFields state={state} />
-      <nav className="mt-2 flex w-full place-content-center gap-4 text-sm font-medium">
-        <Link className="underline underline-offset-4" href="/login">
-          Back to login
-        </Link>
-      </nav>
+      <LinkAsButton href="/login">Back to login</LinkAsButton>
     </Form>
   );
 }
