@@ -22,7 +22,13 @@ export default function LoginUserFormFields({
       </h2>
       <InputGroup>
         <Label htmlFor="email">E-mail</Label>
-        <Input id="email" name="email" type="email" placeholder="E-mail" />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          defaultValue={state?.inputs?.email}
+        />
         {state?.error &&
           typeof state.error !== "string" &&
           state.error.email && (
@@ -38,6 +44,7 @@ export default function LoginUserFormFields({
           name="password"
           type="password"
           placeholder="Password"
+          defaultValue={state?.inputs?.password}
         />
         {state?.error &&
           typeof state.error !== "string" &&

@@ -20,7 +20,13 @@ export default function CreateUserFormFields({
       <h2 className="text-center text-lg font-medium">Register new user</h2>
       <InputGroup>
         <Label htmlFor="email">E-mail</Label>
-        <Input id="email" name="email" type="email" placeholder="E-mail" />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          defaultValue={state?.inputs?.email}
+        />
         {state?.error &&
           typeof state.error !== "string" &&
           state.error.email && (
@@ -36,6 +42,7 @@ export default function CreateUserFormFields({
           name="password"
           type="password"
           placeholder="Password"
+          defaultValue={state?.inputs?.password}
         />
         {state?.error &&
           typeof state.error !== "string" &&

@@ -14,6 +14,10 @@ type UserFieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
 type FormState = {
   message?: string;
   error?: UserFieldErrors | string;
+  inputs?: {
+    email: string;
+    password: string;
+  };
 };
 
 const userSchema = z.object({
@@ -25,14 +29,16 @@ export default async function loginUser(
   state: FormState | undefined,
   formData: FormData,
 ) {
-  const validation = userSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
+  const rawInputData = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
+  const validation = userSchema.safeParse(rawInputData);
 
   if (!validation.success) {
     return {
       error: validation.error.flatten().fieldErrors,
+      inputs: rawInputData,
     };
   }
 
@@ -52,6 +58,7 @@ export default async function loginUser(
   ) {
     return {
       error: "USER_INCORRECT_CREDENTIALS",
+      inputs: rawInputData,
     };
   }
 

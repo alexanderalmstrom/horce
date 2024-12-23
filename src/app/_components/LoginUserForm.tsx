@@ -1,14 +1,14 @@
 "use client";
 
 import type { ComponentPropsWithoutRef } from "react";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
+import Link from "next/link";
 import loginUser from "../_actions/loginUser";
 import Form from "../_ui/Form";
 import LoginUserFormFields from "./LoginUserFormFields";
-import Link from "next/link";
 
 export default function LoginUserForm(props: ComponentPropsWithoutRef<"form">) {
-  const [state, action] = useFormState(loginUser, undefined);
+  const [state, action] = useActionState(loginUser, undefined);
 
   return (
     <Form action={action} {...props}>

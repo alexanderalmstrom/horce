@@ -12,6 +12,10 @@ type UserFieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
 type FormState = {
   message?: string;
   error?: UserFieldErrors | string;
+  inputs?: {
+    email: string;
+    password: string;
+  };
 };
 
 const userSchema = z.object({
@@ -27,14 +31,16 @@ export default async function createUser(
   state: FormState | undefined,
   formData: FormData,
 ) {
-  const validation = userSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
+  const rawInputData = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
+  const validation = userSchema.safeParse(rawInputData);
 
   if (!validation.success) {
     return {
       error: validation.error.flatten().fieldErrors,
+      inputs: rawInputData,
     };
   }
 
@@ -53,11 +59,13 @@ export default async function createUser(
       if (error.code === "23505") {
         return {
           error: "USER_ALREADY_EXISTS",
+          inputs: rawInputData,
         };
       }
 
       return {
         error: "USER_CREATION_FAILED",
+        inputs: rawInputData,
       };
     });
 
