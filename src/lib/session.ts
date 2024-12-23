@@ -22,6 +22,7 @@ const cookie = {
   duration: 24 * 60 * 60 * 1000, // 1 day
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function encrypt(payload: any) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
@@ -40,7 +41,7 @@ export async function decrypt(session?: string) {
       algorithms: ["HS256"],
     });
     return payload;
-  } catch (error) {
+  } catch {
     return undefined;
   }
 }
@@ -55,7 +56,7 @@ export async function createSession({
   const expires = new Date(Date.now() + cookie.duration);
   const session = await encrypt({ userId, role, expires });
 
-  cookies().set({
+  (await cookies()).set({
     ...cookie.options,
     name: cookie.name,
     value: session,
@@ -67,7 +68,7 @@ export async function createSession({
 }
 
 export async function verifySession() {
-  const sessionCookie = cookies().get(cookie.name)?.value;
+  const sessionCookie = (await cookies()).get(cookie.name)?.value;
   const session = await decrypt(sessionCookie);
 
   if (!session?.userId) {
@@ -80,6 +81,6 @@ export async function verifySession() {
 }
 
 export async function deleteSession() {
-  cookies().delete(cookie.name);
+  (await cookies()).delete(cookie.name);
   redirect("/login");
 }
