@@ -6,13 +6,17 @@ import { ComponentProps } from "react";
 import { cn } from "~/lib/utils/cn";
 
 export default function DashboardNavigationLink({
-  href,
   children,
+  className,
+  href,
 }: ComponentProps<typeof Link>) {
   const pathname = usePathname();
 
   return (
-    <Link className={cn(pathname === href && "underline")} href={href}>
+    <Link
+      className={cn(pathname === href && "underline", className)}
+      href={href}
+    >
       {children}
     </Link>
   );
