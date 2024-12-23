@@ -19,6 +19,23 @@ export default function CreateUserFormFields({
     <>
       <h2 className="text-center text-lg font-medium">Register new user</h2>
       <InputGroup>
+        <Label htmlFor="fullName">Your full name</Label>
+        <Input
+          id="fullName"
+          name="fullName"
+          type="text"
+          placeholder="Full name"
+          defaultValue={state?.inputs?.fullName}
+        />
+        {state?.error &&
+          typeof state.error !== "string" &&
+          state.error.fullName && (
+            <p className="flex flex-col text-sm text-red-500">
+              {state.error.fullName[0]}
+            </p>
+          )}
+      </InputGroup>
+      <InputGroup>
         <Label htmlFor="email">E-mail</Label>
         <Input
           id="email"

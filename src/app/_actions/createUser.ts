@@ -19,6 +19,10 @@ type FormState = {
 };
 
 const userSchema = z.object({
+  fullName: z
+    .string()
+    .min(1, "USER_FULL_NAME_REQUIRED")
+    .max(255, "USER_FULL_NAME_TOO_LONG"),
   email: z.string().min(1, "USER_EMAIL_REQUIRED").email("USER_EMAIL_INVALID"),
   password: z
     .string()
@@ -32,6 +36,7 @@ export default async function createUser(
   formData: FormData,
 ) {
   const rawInputData = {
+    fullName: formData.get("fullName") as string,
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
@@ -45,6 +50,7 @@ export default async function createUser(
   }
 
   const newUser = {
+    fullName: validation.data.fullName,
     email: validation.data.email,
     password: hashPassword(validation.data.password),
   } satisfies UserInsert;
