@@ -22,9 +22,15 @@ export default async function UsersList() {
             key={user.id}
             className="table-row bg-transparent transition-[background-color] duration-1000 hover:bg-background-accent hover:duration-100"
           >
-            <div className="table-cell px-1 py-2">{user.email}</div>
-            <div className="table-cell px-1 py-2">{user.fullName}</div>
-            <div className="table-cell px-1 py-2">{user.role}</div>
+            <div className="table-cell whitespace-nowrap px-1 py-2">
+              {user.email}
+            </div>
+            <div className="table-cell whitespace-nowrap px-1 py-2">
+              {user.fullName}
+            </div>
+            <div className="table-cell whitespace-nowrap px-1 py-2">
+              {user.role}
+            </div>
           </div>
         ))}
       </div>
