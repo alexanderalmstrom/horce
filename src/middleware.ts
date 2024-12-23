@@ -4,10 +4,22 @@ import type { NextRequest } from "next/server";
 import { decrypt } from "./lib/session";
 
 export async function middleware(request: NextRequest) {
+  const loginRoute = ["/", "/login"];
   const protectedRoute = ["/dashboard"];
   const currentPath = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoute.includes(currentPath);
 
+  // Redirect to dashboard if user is logged in and tries to access home page or login page
+  if (loginRoute.includes(currentPath)) {
+    const cookie = (await cookies()).get("session")?.value;
+    const session = await decrypt(cookie);
+
+    if (session?.userId) {
+      return NextResponse.redirect(new URL("/dashboard", request.nextUrl));
+    }
+  }
+
+  // Redirect to login if user is not logged in and tries to access dashboard
   if (isProtectedRoute) {
     const cookie = (await cookies()).get("session")?.value;
     const session = await decrypt(cookie);
