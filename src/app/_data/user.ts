@@ -1,17 +1,20 @@
 import "server-only";
+
 import { eq } from "drizzle-orm";
+import { cache } from "react";
 import { db } from "~/lib/db";
 import { usersTable } from "~/lib/db/schema";
 import { verifySession } from "~/lib/session";
 
-export async function getUser() {
+export const getUser = cache(async () => {
   const session = await verifySession();
 
   const users = await db
     .select({
       id: usersTable.id,
-      email: usersTable.email,
       role: usersTable.role,
+      email: usersTable.email,
+      fullName: usersTable.fullName,
     })
     .from(usersTable)
     .where(eq(usersTable.id, Number(session.userId)));
@@ -23,12 +26,18 @@ export async function getUser() {
   }
 
   return userDTO(user);
-}
+});
 
-function userDTO(user: { id: number; email: string; role: string }) {
+function userDTO(user: {
+  id: number;
+  role: string;
+  email: string;
+  fullName: string | null;
+}) {
   return {
     id: user.id,
-    email: user.email,
     role: user.role,
+    email: user.email,
+    fullName: user.fullName,
   };
 }

@@ -1,5 +1,4 @@
 import { getUser } from "../_data/user";
-import LogoutUserButton from "./LogoutUserButton";
 
 export default async function CurrentUserProfile() {
   const user = await getUser();
@@ -9,11 +8,6 @@ export default async function CurrentUserProfile() {
   }
 
   return (
-    <div>
-      <p>ID: {user.id}</p>
-      <p>E-mail: {user.email}</p>
-      <p>Role: {user.role}</p>
-      <LogoutUserButton />
-    </div>
+    <h2 className="text-2xl">Welcome {user.fullName ?? "#" + user.id}!</h2>
   );
 }
