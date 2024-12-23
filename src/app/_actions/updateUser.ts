@@ -68,6 +68,7 @@ export default async function updateUser(
     return updatedUser;
   }
 
+  revalidatePath("/dashboard/users");
   revalidatePath("/dashboard/settings");
 
   return {
