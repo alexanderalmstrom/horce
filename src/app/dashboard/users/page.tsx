@@ -1,7 +1,15 @@
 import { Suspense } from "react";
+import AccessDenied from "~/app/_components/AccessDenied";
 import UsersList from "~/app/_components/UsersList";
+import { getUser } from "~/app/_data/user";
 
 export default async function Page() {
+  const user = await getUser();
+
+  if (user.role !== "admin") {
+    return <AccessDenied />;
+  }
+
   return (
     <div>
       <h1 className="text-2xl">Users</h1>

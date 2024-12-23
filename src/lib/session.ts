@@ -1,4 +1,5 @@
 import "server-only";
+
 import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -77,6 +78,7 @@ export async function verifySession() {
 
   return {
     userId: session.userId,
+    role: session.role,
   };
 }
 
