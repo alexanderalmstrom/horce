@@ -1,36 +1,28 @@
-import { getUsers } from "~/app/_data/user";
+import { Suspense } from "react";
+import UsersList from "~/app/_components/UsersList";
 
 export default async function Page() {
-  const users = await getUsers();
-
   return (
     <div>
       <h1 className="text-2xl">Users</h1>
-      <div className="overflow-x-auto">
-        <div className="table w-full py-4 text-sm">
-          <div className="table-header-group">
-            <p className="table-cell whitespace-nowrap border-b border-foreground/10 px-1 py-2 font-semibold">
-              Email
-            </p>
-            <p className="table-cell whitespace-nowrap border-b border-foreground/10 px-1 py-2 font-semibold">
-              Full Name
-            </p>
-            <p className="table-cell whitespace-nowrap border-b border-foreground/10 px-1 py-2 font-semibold">
-              Role
-            </p>
-          </div>
-          {users.map((user) => (
-            <div
-              key={user.id}
-              className="table-row bg-transparent transition-[background-color] duration-1000 hover:bg-background-accent hover:duration-100"
-            >
-              <div className="table-cell px-1 py-2">{user.email}</div>
-              <div className="table-cell px-1 py-2">{user.fullName}</div>
-              <div className="table-cell px-1 py-2">{user.role}</div>
+      <Suspense
+        fallback={
+          <div className="flex flex-col items-start gap-4 py-6">
+            <div className="flex h-4 w-full flex-row gap-3">
+              <div className="w-full max-w-32 animate-pulse rounded-sm bg-foreground/10" />
+              <div className="w-full max-w-32 animate-pulse rounded-sm bg-foreground/10" />
+              <div className="w-full max-w-32 animate-pulse rounded-sm bg-foreground/10" />
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="flex w-full flex-col gap-2">
+              <div className="h-4 w-full animate-pulse rounded-sm bg-foreground/10" />
+              <div className="h-4 w-full animate-pulse rounded-sm bg-foreground/10" />
+              <div className="h-4 w-full animate-pulse rounded-sm bg-foreground/10" />
+            </div>
+          </div>
+        }
+      >
+        <UsersList />
+      </Suspense>
     </div>
   );
 }
