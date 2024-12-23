@@ -7,7 +7,7 @@ import Form from "../ui/Form";
 import CreateUserFormFields from "./CreateUserFormFields";
 import Link from "next/link";
 
-export default function CreateUserForm({ ...props }: ComponentProps<"form">) {
+export default function CreateUserForm(props: ComponentProps<"form">) {
   const [state, action] = useFormState(createUser, undefined);
 
   return (

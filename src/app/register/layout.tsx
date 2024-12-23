@@ -1,17 +1,13 @@
-import Link from "next/link";
-import SiteLogo from "../_components/SiteLogo";
+import LayoutCentered from "../_components/LayoutCentered";
+import SiteHeaderWithLogo from "../_components/SiteHeaderWithLogo";
 
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="mx-auto flex min-h-svh flex-col place-content-center place-items-center gap-12 p-4 py-12 lg:py-24">
-      <header className="flex flex-col items-center gap-4">
-        <Link href="/">
-          <SiteLogo />
-        </Link>
-      </header>
+    <LayoutCentered>
+      <SiteHeaderWithLogo />
       {children}
-    </main>
+    </LayoutCentered>
   );
 }
