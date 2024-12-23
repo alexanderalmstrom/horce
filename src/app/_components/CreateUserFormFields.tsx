@@ -1,9 +1,9 @@
 import { useFormStatus } from "react-dom";
 import { Loader2 } from "lucide-react";
-import Button from "../ui/Button";
-import Input from "../ui/Input";
-import InputGroup from "../ui/InputGroup";
-import Label from "../ui/Label";
+import Button from "../_ui/Button";
+import Input from "../_ui/Input";
+import InputGroup from "../_ui/InputGroup";
+import Label from "../_ui/Label";
 import createUser from "../_actions/createUser";
 
 type CreateUserState = Awaited<ReturnType<typeof createUser>>;

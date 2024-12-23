@@ -3,7 +3,7 @@
 import { ComponentProps } from "react";
 import { useFormState } from "react-dom";
 import createUser from "../_actions/createUser";
-import Form from "../ui/Form";
+import Form from "../_ui/Form";
 import CreateUserFormFields from "./CreateUserFormFields";
 import Link from "next/link";
 

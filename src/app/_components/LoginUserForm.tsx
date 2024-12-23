@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { useFormState } from "react-dom";
 import loginUser from "../_actions/loginUser";
-import Form from "../ui/Form";
+import Form from "../_ui/Form";
 import LoginUserFormFields from "./LoginUserFormFields";
 import Link from "next/link";
 
