@@ -38,6 +38,6 @@ function userDTO(user: {
     id: user.id,
     role: user.role,
     email: user.email,
-    fullName: user.fullName,
+    fullName: user.fullName ?? undefined,
   };
 }
