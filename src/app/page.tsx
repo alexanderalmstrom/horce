@@ -4,7 +4,7 @@ import SiteLogo from "./_components/SiteLogo";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-svh flex-col place-content-center place-items-center gap-8 p-4 py-12 lg:py-24">
+    <main className="mx-auto flex min-h-svh flex-col place-content-center place-items-center gap-12 p-4 py-12 lg:py-24">
       <header className="flex flex-col items-center gap-4">
         <Link href="/">
           <SiteLogo />
