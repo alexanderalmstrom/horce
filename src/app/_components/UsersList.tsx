@@ -11,7 +11,7 @@ export default async function UsersList() {
             Email
           </p>
           <p className="table-cell whitespace-nowrap border-b border-foreground/10 px-1 py-2 font-semibold">
-            Full Name
+            Full name
           </p>
           <p className="table-cell whitespace-nowrap border-b border-foreground/10 px-1 py-2 font-semibold">
             Role
