@@ -30,14 +30,18 @@ export async function encrypt(payload: any) {
     .sign(secret);
 }
 
-export async function decrypt(session: string) {
+export async function decrypt(session?: string) {
+  if (!session) {
+    return undefined;
+  }
+
   try {
     const { payload } = await jwtVerify(session, secret, {
       algorithms: ["HS256"],
     });
     return payload;
   } catch (error) {
-    return null;
+    return undefined;
   }
 }
 
@@ -64,11 +68,6 @@ export async function createSession({
 
 export async function verifySession() {
   const sessionCookie = cookies().get(cookie.name)?.value;
-
-  if (!sessionCookie) {
-    redirect("/login");
-  }
-
   const session = await decrypt(sessionCookie);
 
   if (!session?.userId) {

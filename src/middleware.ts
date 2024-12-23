@@ -10,11 +10,6 @@ export async function middleware(request: NextRequest) {
 
   if (isProtectedRoute) {
     const cookie = cookies().get("session")?.value;
-
-    if (!cookie) {
-      return NextResponse.redirect(new URL("/login", request.nextUrl));
-    }
-
     const session = await decrypt(cookie);
 
     if (!session?.userId) {
