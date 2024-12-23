@@ -6,6 +6,19 @@ import { db } from "~/lib/db";
 import { usersTable } from "~/lib/db/schema";
 import { verifySession } from "~/lib/session";
 
+export const getUsers = cache(async () => {
+  const users = await db
+    .select({
+      id: usersTable.id,
+      role: usersTable.role,
+      email: usersTable.email,
+      fullName: usersTable.fullName,
+    })
+    .from(usersTable);
+
+  return users.map(userDTO);
+});
+
 export const getUser = cache(async () => {
   const session = await verifySession();
 
