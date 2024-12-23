@@ -13,7 +13,7 @@ export default function CreateUserForm(props: ComponentProps<"form">) {
   return (
     <Form action={action} {...props}>
       <CreateUserFormFields state={state} />
-      <nav className="flex w-full place-content-center gap-4 text-sm font-medium">
+      <nav className="mt-2 flex w-full place-content-center gap-4 text-sm font-medium">
         <Link className="underline underline-offset-4" href="/login">
           Back to login
         </Link>

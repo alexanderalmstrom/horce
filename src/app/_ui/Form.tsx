@@ -9,7 +9,7 @@ export default function Form({
   return (
     <form
       className={cn(
-        "bg-background-accent flex w-full flex-col gap-4 rounded-md border border-foreground/10 p-8",
+        "flex w-full flex-col gap-4 rounded-md border border-foreground/10 bg-background-accent px-8 py-12",
         className,
       )}
       {...props}
