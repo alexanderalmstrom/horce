@@ -1,18 +1,31 @@
 "use client";
 
-import { useActionState } from "react";
+import { ComponentProps, useActionState } from "react";
 import type { UserDTO } from "../_data/user";
 import updateUser from "~/app/_actions/updateUser";
 import Button from "~/app/_ui/Button";
 import Input from "~/app/_ui/Input";
 import InputGroup from "~/app/_ui/InputGroup";
 import Label from "~/app/_ui/Label";
+import { cn } from "~/lib/utils/cn";
 
-export default function UpdateUserForm({ user }: { user: UserDTO }) {
+type UpdateUserFormProps = ComponentProps<"form"> & {
+  user: UserDTO;
+};
+
+export default function UpdateUserForm({
+  className,
+  user,
+  ...props
+}: UpdateUserFormProps) {
   const [state, action] = useActionState(updateUser, undefined);
 
   return (
-    <form action={action} className="flex flex-col gap-4">
+    <form
+      action={action}
+      className={cn("flex flex-col gap-4", className)}
+      {...props}
+    >
       <h2 className="text-2xl">Settings</h2>
       <InputGroup>
         <Label htmlFor="fullName">Full name:</Label>
