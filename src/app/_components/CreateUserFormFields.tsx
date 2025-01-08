@@ -71,7 +71,11 @@ export default function CreateUserFormFields({
           )}
       </InputGroup>
       <Button className="mt-2" type="submit" disabled={pending}>
-        {pending ? <Loader2 size={24} className="animate-spin" /> : "Register"}
+        {pending ? (
+          <Loader2 size={24} className="animate-spin" />
+        ) : (
+          "Create new user"
+        )}
       </Button>
       {state?.error && typeof state.error === "string" && (
         <p className="text-sm text-red-500">{state.error}</p>
