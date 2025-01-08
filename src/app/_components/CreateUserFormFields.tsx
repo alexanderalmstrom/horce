@@ -17,7 +17,6 @@ export default function CreateUserFormFields({
 
   return (
     <>
-      <h2 className="text-center text-lg font-medium">Register new user</h2>
       <InputGroup>
         <Label htmlFor="fullName">Your full name</Label>
         <Input

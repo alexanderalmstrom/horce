@@ -1,4 +1,5 @@
 import AccessDenied from "~/app/_components/AccessDenied";
+import DashboardCreateNewUserForm from "~/app/_components/DashboardCreateNewUserForm";
 import { getUser } from "~/app/_data/user";
 import LinkAsButton from "~/app/_ui/LinkAsButton";
 
@@ -10,13 +11,10 @@ export default async function Page() {
   }
 
   return (
-    <>
-      <LinkAsButton
-        className="bg-foreground text-background hover:bg-foreground/90 hover:text-background"
-        href="/dashboard/users/new"
-      >
-        New user
-      </LinkAsButton>
-    </>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl">Create new user</h1>
+      <DashboardCreateNewUserForm />
+      <LinkAsButton href="/dashboard/users">Cancel</LinkAsButton>
+    </div>
   );
 }

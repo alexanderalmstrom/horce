@@ -12,6 +12,7 @@ export default function CreateUserForm(props: ComponentProps<"form">) {
 
   return (
     <Form action={action} {...props}>
+      <h2 className="text-center text-lg font-medium">Register new user</h2>
       <CreateUserFormFields state={state} />
       <LinkAsButton href="/login">Back to login</LinkAsButton>
     </Form>

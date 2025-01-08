@@ -17,9 +17,6 @@ export default function LoginUserFormFields({
 
   return (
     <>
-      <h2 className="text-center text-lg font-medium">
-        Log in with existing user
-      </h2>
       <InputGroup>
         <Label htmlFor="email">E-mail</Label>
         <Input

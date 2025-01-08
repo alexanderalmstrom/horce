@@ -12,6 +12,9 @@ export default function LoginUserForm(props: ComponentPropsWithoutRef<"form">) {
 
   return (
     <Form action={action} {...props}>
+      <h2 className="text-center text-lg font-medium">
+        Log in with existing user
+      </h2>
       <LoginUserFormFields state={state} />
       <LinkAsButton href="/register">Register new user</LinkAsButton>
     </Form>
