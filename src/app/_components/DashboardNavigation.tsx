@@ -1,4 +1,4 @@
-import LogoutUserButton from "./LogoutUserButton";
+import LogoutButton from "./LogoutButton";
 import RoleBasedView from "./RoleBasedView";
 import DashboardNavigationLink from "./DashboardNavigationLink";
 
@@ -18,7 +18,7 @@ export default function DashboardNavigation() {
           Settings
         </DashboardNavigationLink>
       </nav>
-      <LogoutUserButton className="mt-auto" />
+      <LogoutButton className="mt-auto" />
     </>
   );
 }

@@ -68,6 +68,6 @@ export default async function loginUser(
   });
 
   return {
-    message: "USER_LOGGED_IN",
+    message: "USER_SIGNED_IN",
   };
 }
