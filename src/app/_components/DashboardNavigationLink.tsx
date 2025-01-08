@@ -15,8 +15,9 @@ export default function DashboardNavigationLink({
   const pagePathname = getPathnameByUrl(pathname, url);
 
   const isCurrent =
-    (pagePathname?.parentPath && pathname.includes(pagePathname.parentPath)) ||
-    url === `/${pagePathname?.currentPath}`;
+    (pagePathname?.parentPathname &&
+      pathname.includes(pagePathname.parentPathname)) ||
+    url === `/${pagePathname?.currentPathname}`;
 
   return (
     <Link className={cn(isCurrent && "underline", className)} href={href}>
@@ -30,21 +31,21 @@ function getPathnameByUrl(pathname: string, href?: string) {
     return undefined;
   }
 
-  const currentPath = getCurrentPath(pathname, -1);
-  const parentPath = getCurrentPath(href);
+  const currentPathname = getCurrentPathname(pathname, -1);
+  const parentPathname = getCurrentPathname(href);
 
   return {
-    currentPath,
-    parentPath,
+    currentPathname,
+    parentPathname,
   };
 }
 
-function getCurrentPath(href: string, numberOfLevels = 1) {
-  const path = href
-    .split("/")
+function getCurrentPathname(href: string, numberOfLevels = 1) {
+  const hrefPathname = href.split("/");
+  const currentPathname = hrefPathname
     .filter(Boolean)
-    .slice(numberOfLevels, href.split("/").length)
+    .slice(numberOfLevels, hrefPathname.length)
     .join("/");
 
-  return path;
+  return currentPathname;
 }
