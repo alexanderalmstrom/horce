@@ -26,7 +26,7 @@ export default function UpdateUserForm({
       className={cn("flex flex-col gap-4", className)}
       {...props}
     >
-      <h2 className="text-2xl">Settings</h2>
+      <h1 className="text-2xl">Settings</h1>
       <InputGroup>
         <Label htmlFor="fullName">Full name:</Label>
         <Input

@@ -8,6 +8,6 @@ export default async function CurrentUserProfile() {
   }
 
   return (
-    <h2 className="text-2xl">Welcome {user.fullName ?? "#" + user.id}!</h2>
+    <h1 className="text-2xl">Welcome {user.fullName ?? "#" + user.id}!</h1>
   );
 }

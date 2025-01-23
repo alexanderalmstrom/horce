@@ -12,7 +12,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl">Create new user</h1>
+      <h2 className="text-2xl">Create new user</h2>
       <DashboardCreateNewUserForm />
       <LinkAsButton href="/dashboard/users">Cancel</LinkAsButton>
     </div>
