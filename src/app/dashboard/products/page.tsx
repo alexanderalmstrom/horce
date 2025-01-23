@@ -4,6 +4,10 @@ import { getProducts } from "~/app/_data/product";
 export default async function Page() {
   const products = await getProducts();
 
+  if (!products) {
+    return <div>No products found :(</div>;
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-2xl">Products</h1>
