@@ -1,3 +1,4 @@
+import { Frown } from "lucide-react";
 import Link from "next/link";
 import { getProducts } from "~/app/_data/product";
 
@@ -5,7 +6,11 @@ export default async function Page() {
   const products = await getProducts();
 
   if (!products.length) {
-    return <h1>No products found :(</h1>;
+    return (
+      <h1 className="flex items-center gap-1">
+        No products found <Frown size={16} />
+      </h1>
+    );
   }
 
   return (
