@@ -5,7 +5,10 @@ import Button from "../_ui/Button";
 export default function LogoutButton(props: ComponentProps<"form">) {
   return (
     <form action={logoutUser} {...props}>
-      <Button type="submit" className="w-full">
+      <Button
+        type="submit"
+        className="whitespace-nowrap max-lg:px-3 max-lg:py-1 max-lg:text-sm lg:w-full"
+      >
         Sign out
       </Button>
     </form>

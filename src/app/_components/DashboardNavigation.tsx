@@ -5,7 +5,7 @@ import DashboardNavigationLink from "./DashboardNavigationLink";
 export default function DashboardNavigation() {
   return (
     <>
-      <nav className="flex grow flex-col gap-1">
+      <nav className="flex grow flex-col gap-1 max-lg:order-1">
         <DashboardNavigationLink className="py-1" href="/dashboard">
           Dashboard
         </DashboardNavigationLink>
@@ -18,7 +18,7 @@ export default function DashboardNavigation() {
           Settings
         </DashboardNavigationLink>
       </nav>
-      <LogoutButton className="mt-auto" />
+      <LogoutButton className="max-lg:ml-auto lg:mt-auto lg:w-full" />
     </>
   );
 }
