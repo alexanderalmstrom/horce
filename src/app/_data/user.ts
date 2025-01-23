@@ -3,7 +3,7 @@ import "server-only";
 import { eq } from "drizzle-orm";
 import { cache } from "react";
 import { db } from "~/lib/db";
-import { usersTable } from "~/lib/db/schema/users";
+import { User, usersTable } from "~/lib/db/schema/users";
 import { verifySession } from "~/lib/session";
 
 export const getUsers = cache(async () => {
@@ -52,12 +52,7 @@ export const getUser = cache(async () => {
   return userDTO(user);
 });
 
-function userDTO(user: {
-  id: number;
-  role: string;
-  email: string;
-  fullName: string | null;
-}) {
+function userDTO(user: Pick<User, "id" | "role" | "email" | "fullName">) {
   return {
     id: user.id,
     role: user.role,

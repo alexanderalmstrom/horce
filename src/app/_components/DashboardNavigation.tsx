@@ -10,6 +10,11 @@ export default function DashboardNavigation() {
           Dashboard
         </DashboardNavigationLink>
         <RoleBasedView role="admin">
+          <DashboardNavigationLink className="py-1" href="/dashboard/products">
+            Products
+          </DashboardNavigationLink>
+        </RoleBasedView>
+        <RoleBasedView role="admin">
           <DashboardNavigationLink className="py-1" href="/dashboard/users">
             Users
           </DashboardNavigationLink>
