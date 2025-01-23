@@ -3,7 +3,8 @@ import Link from "next/link";
 import { getProduct } from "~/app/_data/product";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const product = await getProduct(params.id);
+  const pageParams = await params;
+  const product = await getProduct(pageParams.id);
 
   return (
     <div className="flex flex-col gap-6">
@@ -16,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </Link>
       <div>
         <h1 className="text-2xl">{product.name}</h1>
-        ID: {product.id}
+        <p>ID: {product.id}</p>
       </div>
     </div>
   );

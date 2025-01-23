@@ -1,10 +1,14 @@
 import { Suspense, type PropsWithChildren } from "react";
+import NewUserButtonLink from "~/app/_components/NewUserButtonLink";
 import UsersList from "~/app/_components/UsersList";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <>
-      <h1 className="text-2xl">Users</h1>
+      <header className="flex items-center justify-between">
+        <h1 className="text-2xl">Users</h1>
+        <NewUserButtonLink />
+      </header>
       <Suspense
         fallback={
           <div className="flex flex-col items-start gap-4 py-6">

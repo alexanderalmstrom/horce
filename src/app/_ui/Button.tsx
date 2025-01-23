@@ -8,7 +8,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        "flex place-content-center place-items-center rounded-md bg-foreground px-3 py-2.5 text-center font-medium text-background disabled:opacity-75",
+        "flex place-content-center place-items-center rounded-md bg-foreground px-4 py-2 text-center font-medium text-background disabled:opacity-75",
         className,
       )}
       {...props}

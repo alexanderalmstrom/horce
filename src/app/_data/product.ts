@@ -28,7 +28,7 @@ export const getProduct = cache(async (id: string) => {
   });
 
   if (!product) {
-    throw new Error("Product not found");
+    throw new Error("PRODUCT_NOT_FOUND");
   }
 
   return productDTO(product);

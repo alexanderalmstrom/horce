@@ -7,7 +7,7 @@ export default function LogoutButton(props: ComponentProps<"form">) {
     <form action={logoutUser} {...props}>
       <Button
         type="submit"
-        className="whitespace-nowrap max-lg:px-3 max-lg:py-1 max-lg:text-sm lg:w-full"
+        className="max-lg:px-3 max-lg:py-1.5 max-lg:text-sm lg:w-full"
       >
         Sign out
       </Button>

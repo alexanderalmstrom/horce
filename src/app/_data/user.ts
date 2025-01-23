@@ -30,7 +30,7 @@ export const getUsers = cache(async () => {
   return users.map(userDTO);
 });
 
-export const getUser = cache(async () => {
+export const getUser = cache(async (id?: string) => {
   const session = await verifySession();
 
   const users = await db
@@ -41,7 +41,7 @@ export const getUser = cache(async () => {
       fullName: usersTable.fullName,
     })
     .from(usersTable)
-    .where(eq(usersTable.id, Number(session.userId)));
+    .where(eq(usersTable.id, Number(id ?? session.userId)));
 
   const user = users[0];
 
