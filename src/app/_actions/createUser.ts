@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "~/lib/db";
 import { usersTable } from "~/lib/db/schema";
@@ -78,6 +79,8 @@ export default async function createUser(
   if (createdUser && "error" in createdUser) {
     return createdUser;
   }
+
+  revalidatePath("/dashboard/users");
 
   return {
     message: "USER_CREATED",
