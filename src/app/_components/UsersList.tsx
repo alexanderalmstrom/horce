@@ -1,8 +1,17 @@
 import Link from "next/link";
 import { getUsers } from "../_data/user";
+import { Frown } from "lucide-react";
 
 export default async function UsersList() {
   const users = await getUsers();
+
+  if (!users.length) {
+    return (
+      <h1 className="flex items-center gap-1">
+        No users found <Frown size={16} />
+      </h1>
+    );
+  }
 
   return (
     <div className="mb-4 overflow-x-auto">
