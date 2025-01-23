@@ -2,7 +2,11 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { getProduct } from "~/app/_data/product";
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const pageParams = await params;
   const product = await getProduct(pageParams.id);
 

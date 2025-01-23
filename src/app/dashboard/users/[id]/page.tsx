@@ -1,6 +1,10 @@
 import { getUser } from "~/app/_data/user";
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const pageParams = await params;
   const user = await getUser(pageParams.id);
 
