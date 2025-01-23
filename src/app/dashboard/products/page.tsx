@@ -4,8 +4,8 @@ import { getProducts } from "~/app/_data/product";
 export default async function Page() {
   const products = await getProducts();
 
-  if (!products) {
-    return <div>No products found :(</div>;
+  if (!products.length) {
+    return <h1>No products found :(</h1>;
   }
 
   return (
