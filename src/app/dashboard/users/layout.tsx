@@ -1,8 +1,17 @@
-import { Suspense, type PropsWithChildren } from "react";
+import { Suspense } from "react";
+import type { PropsWithChildren } from "react";
+import AccessDenied from "~/app/_components/AccessDenied";
 import NewUserButtonLink from "~/app/_components/NewUserButtonLink";
 import UsersList from "~/app/_components/UsersList";
+import { getUser } from "~/app/_data/user";
 
-export default function Layout({ children }: PropsWithChildren) {
+export default async function Layout({ children }: PropsWithChildren) {
+  const user = await getUser();
+
+  if (user.role !== "admin") {
+    return <AccessDenied />;
+  }
+
   return (
     <>
       <header className="flex items-center justify-between">
