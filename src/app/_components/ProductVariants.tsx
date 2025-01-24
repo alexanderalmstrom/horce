@@ -15,6 +15,7 @@ export default async function ProductVariants({ id }: Pick<ProductDTO, "id">) {
         <div key={variant.id}>
           <p>ID: {variant.id}</p>
           <p>Price: {variant.price}</p>
+          <p>Description: {variant.description}</p>
         </div>
       ))}
     </div>
