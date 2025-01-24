@@ -12,7 +12,7 @@ export default async function UsersWidget() {
       </div>
       <div className="flex flex-col gap-2">
         <LinkAsButton href="/dashboard/users" className="px-3 py-1.5 text-sm">
-          View users
+          View all users
         </LinkAsButton>
         <LinkAsButton
           href="/dashboard/users/new"

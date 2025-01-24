@@ -1,18 +1,11 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import BackLink from "~/app/_components/BackLink";
 import DashboardCreateProductForm from "~/app/_components/DashboardCreateProductForm";
 
 export default function Page() {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <Link
-          href="/dashboard/products"
-          className="inline-flex items-center gap-1"
-        >
-          <ChevronLeft size={16} />
-          Back to products
-        </Link>
+        <BackLink href="/dashboard/products">View all products</BackLink>
         <h1 className="text-2xl">New product</h1>
         <DashboardCreateProductForm />
       </div>

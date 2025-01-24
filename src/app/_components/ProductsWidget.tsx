@@ -15,7 +15,7 @@ export default async function ProductsWidget() {
           href="/dashboard/products"
           className="px-3 py-1.5 text-sm"
         >
-          View products
+          View all products
         </LinkAsButton>
         <LinkAsButton
           href="/dashboard/products/new"

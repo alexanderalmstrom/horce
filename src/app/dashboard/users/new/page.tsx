@@ -1,6 +1,5 @@
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
 import AccessDenied from "~/app/_components/AccessDenied";
+import BackLink from "~/app/_components/BackLink";
 import DashboardCreateNewUserForm from "~/app/_components/DashboardCreateNewUserForm";
 import { getUser } from "~/app/_data/user";
 
@@ -13,10 +12,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Link href="/dashboard/users" className="inline-flex items-center gap-1">
-        <ChevronLeft size={16} />
-        Back to users
-      </Link>
+      <BackLink href="/dashboard/users">View all users</BackLink>
       <h1 className="text-2xl">New user</h1>
       <DashboardCreateNewUserForm />
     </div>
