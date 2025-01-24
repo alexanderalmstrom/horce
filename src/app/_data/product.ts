@@ -2,7 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { db } from "~/lib/db";
-import { Product } from "~/lib/db/schema";
+import type { Product } from "~/lib/db/schema";
 
 export const getProducts = cache(async () => {
   const products = await db.query.products.findMany({
