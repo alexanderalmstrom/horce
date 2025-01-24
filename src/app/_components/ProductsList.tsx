@@ -44,7 +44,7 @@ function ProductLink({ id, name, description }: ProductDTO) {
   return (
     <Link
       href={`/dashboard/products/${id}`}
-      className="table-row bg-transparent transition-[background-color] duration-1000 hover:bg-background-accent hover:duration-100"
+      className="table-row bg-transparent transition-[background-color] duration-1000 hover:bg-background-accent hover:duration-0"
     >
       <div className="table-cell whitespace-nowrap px-1 py-4">{id}</div>
       <div className="table-cell whitespace-nowrap px-1 py-4">{name}</div>

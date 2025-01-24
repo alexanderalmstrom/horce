@@ -31,7 +31,7 @@ export default async function UsersList() {
           <Link
             key={user.id}
             href={`/dashboard/users/${user.id}`}
-            className="table-row bg-transparent transition-[background-color] duration-1000 hover:bg-background-accent hover:duration-100"
+            className="table-row bg-transparent transition-[background-color] duration-1000 hover:bg-background-accent hover:duration-0"
           >
             <div className="table-cell whitespace-nowrap px-1 py-2">
               {user.email}
