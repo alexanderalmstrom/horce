@@ -10,13 +10,12 @@ type UserInsert = typeof usersTable.$inferInsert;
 
 type UserFieldErrors = z.inferFlattenedErrors<typeof userSchema>["fieldErrors"];
 
+type UserFieldInputs = z.infer<typeof userSchema>;
+
 type FormState = {
   message?: string;
   error?: UserFieldErrors | string;
-  inputs?: {
-    email: string;
-    password: string;
-  };
+  inputs?: UserFieldInputs;
 };
 
 const userSchema = z.object({
@@ -36,17 +35,20 @@ export default async function createUser(
   state: FormState | undefined,
   formData: FormData,
 ) {
-  const rawInputData = {
-    fullName: formData.get("fullName") as string,
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
-  };
-  const validation = userSchema.safeParse(rawInputData);
+  const validation = userSchema.safeParse({
+    fullName: formData.get("fullName"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
 
   if (!validation.success) {
     return {
       error: validation.error.flatten().fieldErrors,
-      inputs: rawInputData,
+      inputs: {
+        fullName: formData.get("fullName") as string,
+        email: formData.get("email") as string,
+        password: formData.get("password") as string,
+      },
     };
   }
 
@@ -61,18 +63,18 @@ export default async function createUser(
     .values(newUser)
     .returning()
     .catch((error) => {
-      console.error("Failed to create user", error);
+      console.error("Error creating user", error);
 
       if (error.code === "23505") {
         return {
           error: "USER_ALREADY_EXISTS",
-          inputs: rawInputData,
+          inputs: validation.data,
         };
       }
 
       return {
-        error: "USER_CREATION_FAILED",
-        inputs: rawInputData,
+        error: "USER_CREATE_ERROR",
+        inputs: validation.data,
       };
     });
 
