@@ -29,7 +29,7 @@ export default function DashboardCreateProductForm({
           id="name"
           name="name"
           type="text"
-          placeholder="Full name"
+          placeholder="Name"
           defaultValue={state?.inputs?.name}
         />
         {state?.error &&
@@ -46,7 +46,7 @@ export default function DashboardCreateProductForm({
           id="description"
           name="description"
           type="text"
-          placeholder="Full name"
+          placeholder="Description"
           defaultValue={state?.inputs?.description}
         />
         {state?.error &&
