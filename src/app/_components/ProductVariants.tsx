@@ -5,13 +5,13 @@ import CreateVariantForm from "./CreateVariantForm";
 
 export default async function ProductVariants({ id }: Pick<ProductDTO, "id">) {
   return (
-    <div className="grid gap-8 lg:grid-cols-12">
+    <>
       <VariantsList id={id} />
-      <div className="flex flex-col gap-4 lg:col-span-5">
+      <div className="flex flex-col gap-4">
         <h3 className="text-2xl">Add variant</h3>
         <CreateVariantForm id={id} />
       </div>
-    </div>
+    </>
   );
 }
 
@@ -23,13 +23,13 @@ async function VariantsList({ id }: ComponentProps<typeof ProductVariants>) {
   }
 
   return (
-    <div className="flex flex-col gap-4 lg:col-span-7">
+    <div className="flex flex-col gap-4">
       <h3 className="text-2xl">Variants</h3>
-      <div className="divide-y divide-foreground/10">
+      <div className="divide-y divide-foreground/10 rounded-md border border-foreground/10">
         {variants.map((variant) => (
           <div
             key={variant.id}
-            className="flex grow flex-col gap-1 bg-background-accent p-4"
+            className="flex grow flex-col gap-1 bg-background-accent p-4 first:rounded-t-md last:rounded-b-md"
           >
             <p>Price: {variant.price}</p>
             <p>Description: {variant.description}</p>
