@@ -10,7 +10,7 @@ import Input from "../_ui/Input";
 import Button from "../_ui/Button";
 import { ProductDTO } from "../_data/product";
 
-export default function AddVariantForm({
+export default function CreateVariantForm({
   id: productId,
 }: Pick<ProductDTO, "id">) {
   const [state, action] = useActionState(createVariant, undefined);
