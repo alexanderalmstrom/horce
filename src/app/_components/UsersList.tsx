@@ -7,7 +7,7 @@ export default async function UsersList() {
 
   if (!users.length) {
     return (
-      <h1 className="flex items-center gap-1">
+      <h1 className="my-4 flex items-center gap-1">
         No users found <Frown size={16} />
       </h1>
     );
