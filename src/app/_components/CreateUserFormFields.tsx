@@ -20,7 +20,7 @@ export default function CreateUserFormFields({
   return (
     <>
       <InputGroup>
-        <Label htmlFor="fullName">Your full name</Label>
+        <Label htmlFor="fullName">Full name</Label>
         <Input
           id="fullName"
           name="fullName"
