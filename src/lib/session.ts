@@ -26,7 +26,7 @@ const cookie = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function encrypt(payload: any) {
   return new SignJWT(payload)
-    .setProtectedHeader({ alg: "HS256" })
+    .setProtectedHeader({ amd: "HS256" })
     .setIssuedAt()
     .setExpirationTime("1 day")
     .sign(secret);
