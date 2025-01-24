@@ -12,7 +12,7 @@ export default function Page() {
         <ChevronLeft size={16} />
         Back
       </Link>
-      <h1 className="text-2xl">Create new product</h1>
+      <h1 className="text-2xl">New product</h1>
       <DashboardCreateProductForm />
     </div>
   );

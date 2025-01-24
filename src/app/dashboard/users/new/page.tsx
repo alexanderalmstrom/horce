@@ -17,7 +17,7 @@ export default async function Page() {
         <ChevronLeft size={16} />
         Back
       </Link>
-      <h1 className="text-2xl">Create new user</h1>
+      <h1 className="text-2xl">New user</h1>
       <DashboardCreateNewUserForm />
     </div>
   );
