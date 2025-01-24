@@ -11,7 +11,7 @@ export default function Page() {
           className="inline-flex items-center gap-1"
         >
           <ChevronLeft size={16} />
-          Back
+          Back to products
         </Link>
         <h1 className="text-2xl">New product</h1>
         <DashboardCreateProductForm />

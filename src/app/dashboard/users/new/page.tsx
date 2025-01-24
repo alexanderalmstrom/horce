@@ -15,7 +15,7 @@ export default async function Page() {
     <div className="flex flex-col gap-4">
       <Link href="/dashboard/users" className="inline-flex items-center gap-1">
         <ChevronLeft size={16} />
-        Back
+        Back to users
       </Link>
       <h1 className="text-2xl">New user</h1>
       <DashboardCreateNewUserForm />

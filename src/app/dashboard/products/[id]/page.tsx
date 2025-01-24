@@ -17,7 +17,7 @@ export default async function Page({
         className="inline-flex items-center gap-1"
       >
         <ChevronLeft size={16} />
-        Back
+        Back to products
       </Link>
       <div>
         <h1 className="text-2xl">{product.name}</h1>
