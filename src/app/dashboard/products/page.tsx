@@ -1,7 +1,7 @@
-import AccessDenied from "~/app/_components/AccessDenied";
-import NewProductButtonLink from "~/app/_components/NewProductButtonLink";
-import ProductsList from "~/app/_components/ProductsList";
 import { getUser } from "~/app/_data/user";
+import AccessDenied from "~/app/_components/AccessDenied";
+import ProductsList from "~/app/_components/ProductsList";
+import SmallButtonLink from "~/app/_ui/SmallButtonLink";
 
 export default async function Page() {
   const user = await getUser();
@@ -14,7 +14,9 @@ export default async function Page() {
     <>
       <header className="flex items-center justify-between">
         <h1 className="text-2xl">Products</h1>
-        <NewProductButtonLink />
+        <SmallButtonLink href="/dashboard/products/new">
+          New product
+        </SmallButtonLink>
       </header>
       <ProductsList />
     </>
