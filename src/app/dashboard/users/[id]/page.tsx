@@ -16,8 +16,10 @@ export default async function Page({
         <ChevronLeft size={16} />
         Back
       </Link>
-      <h1 className="text-2xl">{user.fullName}</h1>
-      <p>ID: {user.id}</p>
+      <div>
+        <h1 className="text-2xl">{user.fullName}</h1>
+        <p>ID: {user.id}</p>
+      </div>
     </div>
   );
 }
