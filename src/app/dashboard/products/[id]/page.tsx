@@ -14,7 +14,7 @@ export default async function Page({
     <div className="flex flex-col gap-6">
       <Link
         href="/dashboard/products"
-        className="inline-flex items-center gap-1 underline"
+        className="inline-flex items-center gap-1"
       >
         <ChevronLeft size={16} />
         Back
