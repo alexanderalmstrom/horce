@@ -2,15 +2,21 @@ import { ComponentProps } from "react";
 import { ProductDTO } from "../_data/product";
 import { getVariants } from "../_data/variant";
 import CreateVariantForm from "./CreateVariantForm";
+import { getUser } from "../_data/user";
 
 export default async function ProductVariants({ id }: Pick<ProductDTO, "id">) {
+  const user = await getUser();
+  const isAdmin = user.role === "admin";
+
   return (
     <>
       <VariantsList id={id} />
-      <div className="flex flex-col gap-4">
-        <h3 className="text-2xl">Add variant</h3>
-        <CreateVariantForm id={id} />
-      </div>
+      {isAdmin && (
+        <div className="flex flex-col gap-4">
+          <h3 className="text-2xl">Add variant</h3>
+          <CreateVariantForm id={id} />
+        </div>
+      )}
     </>
   );
 }

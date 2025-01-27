@@ -1,7 +1,11 @@
 import { getProducts } from "../_data/product";
 import LinkAsButton from "../_ui/LinkAsButton";
 
-export default async function ProductsWidget() {
+export default async function ProductsWidget({
+  isAdmin,
+}: {
+  isAdmin: boolean;
+}) {
   const products = await getProducts();
 
   return (
@@ -17,12 +21,14 @@ export default async function ProductsWidget() {
         >
           View all products
         </LinkAsButton>
-        <LinkAsButton
-          href="/dashboard/products/new"
-          className="bg-foreground px-3 py-1.5 text-sm text-background hover:bg-foreground/90 hover:text-background"
-        >
-          Create new product
-        </LinkAsButton>
+        {isAdmin && (
+          <LinkAsButton
+            href="/dashboard/products/new"
+            className="bg-foreground px-3 py-1.5 text-sm text-background hover:bg-foreground/90 hover:text-background"
+          >
+            Create new product
+          </LinkAsButton>
+        )}
       </div>
     </div>
   );

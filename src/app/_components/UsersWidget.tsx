@@ -1,7 +1,7 @@
 import { getUsers } from "../_data/user";
 import LinkAsButton from "../_ui/LinkAsButton";
 
-export default async function UsersWidget() {
+export default async function UsersWidget({ isAdmin }: { isAdmin: boolean }) {
   const users = await getUsers();
 
   return (
@@ -11,15 +11,19 @@ export default async function UsersWidget() {
         <p className="text-4xl">{users.length}</p>
       </div>
       <div className="flex flex-col gap-2">
-        <LinkAsButton href="/dashboard/users" className="px-3 py-1.5 text-sm">
-          View all users
-        </LinkAsButton>
-        <LinkAsButton
-          href="/dashboard/users/new"
-          className="bg-foreground px-3 py-1.5 text-sm text-background hover:bg-foreground/90 hover:text-background"
-        >
-          Create new user
-        </LinkAsButton>
+        {isAdmin && (
+          <LinkAsButton href="/dashboard/users" className="px-3 py-1.5 text-sm">
+            View all users
+          </LinkAsButton>
+        )}
+        {isAdmin && (
+          <LinkAsButton
+            href="/dashboard/users/new"
+            className="bg-foreground px-3 py-1.5 text-sm text-background hover:bg-foreground/90 hover:text-background"
+          >
+            Create new user
+          </LinkAsButton>
+        )}
       </div>
     </div>
   );
