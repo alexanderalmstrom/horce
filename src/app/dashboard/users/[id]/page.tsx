@@ -8,9 +8,10 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const pageParams = await params;
-  const user = await getUser(pageParams.id);
+  const currentUser = await getUser();
+  const pageUser = await getUser(pageParams.id);
 
-  if (user.role !== "admin") {
+  if (currentUser.role !== "admin") {
     return <AccessDenied />;
   }
 
@@ -18,8 +19,8 @@ export default async function Page({
     <div className="flex flex-col gap-6">
       <BackLink href="/dashboard/users">View all users</BackLink>
       <div>
-        <h1 className="text-2xl">{user.fullName}</h1>
-        <p>ID: {user.id}</p>
+        <h1 className="text-2xl">{pageUser.fullName}</h1>
+        <p>ID: {pageUser.id}</p>
       </div>
     </div>
   );

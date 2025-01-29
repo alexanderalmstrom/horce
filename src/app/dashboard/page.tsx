@@ -3,14 +3,9 @@ import ProductsWidget from "../_components/ProductsWidget";
 import UsersWidget from "../_components/UsersWidget";
 import { getUser } from "../_data/user";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const pageParams = await params;
-  const user = await getUser(pageParams.id);
-  const isAdmin = user.role === "admin";
+export default async function Page() {
+  const currentUser = await getUser();
+  const isAdmin = currentUser.role === "admin";
 
   return (
     <>
